@@ -4,6 +4,10 @@
  */
 package password.generator;
 
+import static java.lang.Integer.parseInt;
+import java.util.Random;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mark Daniel
@@ -52,6 +56,8 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        txtPassword.setEditable(false);
+        txtPassword.setBackground(new java.awt.Color(255, 255, 255));
         txtPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(51, 51, 51), null));
@@ -63,6 +69,11 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
         btnGenerate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnGenerate.setText("GENERATE");
         btnGenerate.setFocusable(false);
+        btnGenerate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -99,6 +110,7 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
 
         txtPasswordLen.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txtPasswordLen.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPasswordLen.setText("8");
 
         chkSpecialChar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         chkSpecialChar.setText("Include Special Characters");
@@ -167,8 +179,7 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(196, 196, 196)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, 0))
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +213,127 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+ 
+    private void btnGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateActionPerformed
+        final String specialChar = ";,:.+-*/%><=!~^&|[]{}()";     // 23 Special Characters
+        final String numbers = "0123456789";                      // 10 Numbers
+        final String letterLower = "abcdefghijklmnopqrstuvwxyz";  // 26 Lowercase Letters
+        final String letterUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";  // 26 Uppercase Letters
+        final int specKeySize = 23, numberSize = 10, letterLowerSize = 26, letterUpperSize =26;
+        boolean includSpecChar = false, includNum = false, includLowercase = false, includUppercase = false;
+        int totalChar = 0;
+        int passwordLen = parseInt(txtPasswordLen.getText());
+        String characters = null;
+        
+        if(chkSpecialChar.isSelected()){
+            includSpecChar = true;
+        }
+        if(chkNumbers.isSelected()){
+            includNum = true;
+        }
+        if(chkLowercaseLet.isSelected()){
+            includLowercase = true;
+        }
+        if(chkUppercaseLet.isSelected()){
+            includUppercase = true;
+        }
+        
+        
+        if(passwordLen >= 8){
+            if(includSpecChar == true && includNum == false && includLowercase == false && includUppercase == false){
+                totalChar = specKeySize;
+                characters = specialChar;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includSpecChar == false && includNum == true && includLowercase == false && includUppercase == false){
+                totalChar = numberSize;
+                characters = numbers;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includSpecChar == false && includNum == false && includLowercase == true && includUppercase == false){
+                totalChar = letterLowerSize;
+                characters = letterLower;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includSpecChar == false && includNum == false && includLowercase == false && includUppercase == true){
+                totalChar = letterUpperSize;
+                characters = letterUpper;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includNum == true && includSpecChar == true && includLowercase == false && includUppercase == false){
+                totalChar = numberSize + specKeySize;  // Adding the sized of selected characters.
+                characters = numbers + specialChar;    // Concatenating the selected char for password combination.
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includNum == true && includSpecChar == false && includLowercase == true && includUppercase == false){
+                totalChar = numberSize + letterLowerSize;
+                characters = numbers + letterLower;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includNum == true && includSpecChar == false && includLowercase == false && includUppercase == true){
+                totalChar = numberSize + letterUpperSize;
+                characters = numbers + letterUpper;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includNum == false && includSpecChar == true && includLowercase == true && includUppercase == false){
+                totalChar = specKeySize + letterLowerSize;
+                characters = specialChar + letterLower;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includNum == false && includSpecChar == false && includLowercase == true && includUppercase == true){
+                totalChar = letterLowerSize + letterUpperSize;
+                characters = letterLower + letterUpper;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includNum == true && includSpecChar == true && includLowercase == true && includUppercase == false){
+                totalChar = numberSize + specKeySize + letterLowerSize;
+                characters = numbers + specialChar + letterLower;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includNum == true && includSpecChar == true && includLowercase == false && includUppercase == true){
+                totalChar = numberSize + specKeySize + letterUpperSize;
+                characters = numbers + specialChar + letterUpper;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includNum == true && includSpecChar == false && includLowercase == true && includUppercase == true){
+                totalChar = numberSize + letterLowerSize + letterUpperSize;
+                characters = numbers + letterLower + letterUpper;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includNum == false && includSpecChar == true && includLowercase == true && includUppercase == true){
+                totalChar = specKeySize + letterLowerSize + letterUpperSize;
+                characters = specialChar + letterLower + letterUpper;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else if(includNum == true && includSpecChar == true && includLowercase == true && includUppercase == true){
+                totalChar = numberSize + specKeySize + letterLowerSize + letterUpperSize;
+                characters = numbers + specialChar + letterLower + letterUpper;
+                generatePassord(passwordLen, totalChar, characters);
+            }
+            else{
+                JOptionPane.showMessageDialog(PasswordGeneratorUI.this, "Select");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(PasswordGeneratorUI.this, "Password Length must be longer than 8 characters");
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnGenerateActionPerformed
 
+    void generatePassord(int passwordLen, int totalChar, String characters){
+        Random randomNumGen = new Random();
+        char[] password = new char[passwordLen]; 
+        
+        for(int i = 0; i < passwordLen; i++){
+            password[i] = characters.charAt(randomNumGen.nextInt(characters.length()));
+        }
+        
+        String string = String.valueOf(password);  
+        txtPassword.setText(string); 
+    }
+    
     /**
      * @param args the command line arguments
      */
