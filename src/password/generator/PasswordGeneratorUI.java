@@ -59,12 +59,13 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
         txtPassword.setBackground(new java.awt.Color(255, 255, 255));
         txtPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(51, 51, 51), null));
+        txtPassword.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
         btnGenerate.setBackground(new java.awt.Color(51, 255, 51));
         btnGenerate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnGenerate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/password/generator/refresh_50x50.png"))); // NOI18N
         btnGenerate.setText("REGENERATE");
+        btnGenerate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnGenerate.setFocusable(false);
         btnGenerate.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnGenerate.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +98,7 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Password Length :");
@@ -105,6 +106,7 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
         txtPasswordLen.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txtPasswordLen.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPasswordLen.setText("8");
+        txtPasswordLen.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
 
         chkSpecialChar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         chkSpecialChar.setText("Include Special Characters");
