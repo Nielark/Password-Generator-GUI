@@ -34,7 +34,6 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtPassword = new javax.swing.JTextField();
-        btnRegenerate = new javax.swing.JButton();
         btnGenerate = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -62,13 +61,12 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
         txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPassword.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(51, 51, 51), null));
 
-        btnRegenerate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/password/generator/refresh_50x50.png"))); // NOI18N
-        btnRegenerate.setFocusable(false);
-
-        btnGenerate.setBackground(new java.awt.Color(102, 102, 255));
+        btnGenerate.setBackground(new java.awt.Color(51, 255, 51));
         btnGenerate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnGenerate.setText("GENERATE");
+        btnGenerate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/password/generator/refresh_50x50.png"))); // NOI18N
+        btnGenerate.setText("REGENERATE");
         btnGenerate.setFocusable(false);
+        btnGenerate.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnGenerate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerateActionPerformed(evt);
@@ -82,10 +80,8 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -97,9 +93,7 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
                         .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRegenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25))
         );
 
@@ -311,7 +305,7 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
                 generatePassord(passwordLen, totalChar, characters);
             }
             else{
-                JOptionPane.showMessageDialog(PasswordGeneratorUI.this, "Select");
+                JOptionPane.showMessageDialog(PasswordGeneratorUI.this, "Please select from, the checkbox below for the password characters combitnation.");
             }
         }
         else{
@@ -371,7 +365,6 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerate;
-    private javax.swing.JButton btnRegenerate;
     private javax.swing.JCheckBox chkLowercaseLet;
     private javax.swing.JCheckBox chkNumbers;
     private javax.swing.JCheckBox chkSpecialChar;
