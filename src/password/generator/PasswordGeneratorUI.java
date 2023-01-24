@@ -214,10 +214,15 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
         final String letterLower = "abcdefghijklmnopqrstuvwxyz";  // 26 Lowercase Letters
         final String letterUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";  // 26 Uppercase Letters
         final int specKeySize = 23, numberSize = 10, letterLowerSize = 26, letterUpperSize =26;
-        boolean includSpecChar = false, includNum = false, includLowercase = false, includUppercase = false;
-        int totalChar = 0;
-        int passwordLen = parseInt(txtPasswordLen.getText());
+        boolean includSpecChar = false, includNum = false, includLowercase = false, includUppercase = false;      
         String characters = null;
+        int totalChar = 0;
+        
+        if(txtPasswordLen.getText().isEmpty()){
+            txtPasswordLen.setText("8");
+        }
+        
+        int passwordLen = parseInt(txtPasswordLen.getText());
         
         if(chkSpecialChar.isSelected()){
             includSpecChar = true;
@@ -305,7 +310,7 @@ public class PasswordGeneratorUI extends javax.swing.JFrame {
                 generatePassord(passwordLen, totalChar, characters);
             }
             else{
-                JOptionPane.showMessageDialog(PasswordGeneratorUI.this, "Please select from, the checkbox below for the password characters combitnation.");
+                JOptionPane.showMessageDialog(PasswordGeneratorUI.this, "Please select from the checkbox below for the password characters combitnation.");
             }
         }
         else{
